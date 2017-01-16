@@ -1,0 +1,132 @@
+************Remote chef_apply**********
+
+knife ssh "node_name" -x root -P passwd "chef-client" --attribute ipaddress
+
+******creating a user in cookbook********
+
+user 'tony' do
+   comment 'random user'
+   Uid '1234'
+   group 'users'
+   home '/home/tony'
+   shell 'bin/bash'
+   password '1239'
+end
+
+group 'srini' do
+   gid      '9999'
+   members  'srini'
+   action   :create
+
+******creating a file in a particular user *******
+ '
+file '/app/sample.txt' do
+  content 'This is a sample'
+  mode '0755'
+  owner 'srini'
+  group  'srini'
+end
+
+
+**********Version storage in metadat*********
+to keep cookbook version 
+1. change version in metadata.rb 
+2.change description too
+
+***********to reload the atributes in node to keep attributes of a node updated********
+ohai 'reload' do
+   action :reload
+end
+
+*******USER_creation********
+
+file '/home/srini1/srini.txt' do
+  content 'This is text that i am storing in the above folder'
+  mode     '0755'
+  owner    'srini'
+  group     'srini'
+end
+
+******Installing_tomcat************
+
+
+
+
+******copying_file_to_node***********
+Define this in files
+
+cookbook_file '/home/tomcat/myapp/login/dblogin.php' do
+  source 'dblogin.php'
+  owner 'tomcat'
+  group 'tomcat'
+  mode '0755'
+  action :create
+end
+
+*****Command_execution_in_nodes******
+
+execute "apt-get update" do
+  command "apt-get update"
+end
+
+
+*****Including_receipe*****
+
+include_recipe "apt"
+
+*****attributes*****
+in attribures-->default.rb
+
+default['name']='roshan' ----> user node['name']
+default['uid']='1239'------->uid node['uid']
+default['guid']='4566'------>
+default['password']='roshan123'
+
+
+******running_command_in Remote_using_knife*****
+knife ssh "name:karthik-node" -x root -P passwd "chef-client -o recipe[alpha@0.6.0]" --attribute ipaddress
+
+****Executing_bash_command******
+
+bash 'enable port 8080' do
+  user 'root'
+  cwd  '/tmp'
+  code <<-EOH
+  
+   firewall-cmd --zone=public --add-port = 8080/tcp --permanent
+
+  EOH
+  not_if  "firewall-cmd --zone=public --list-ports | grep 8080"
+end
+
+not_if---> condition false execute true
+prevent a resource from executing when the condition returns true
+
+only_if
+allow a resource to execute only if the condition returns true
+
+*****files_deploying_Artifact****
+
+cookbook_file '/usr/share/tomcat/webapps/sample.war' do
+   source 'sample.war'
+   owner    'root'
+   group    'root'
+   mode     '0755'
+   action    :create
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

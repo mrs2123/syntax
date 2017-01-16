@@ -1,0 +1,3 @@
+knife ssh "node:node_name" -x root -p passwd "chef-client -o recipe[alpha:0.6.0]" --attribute ipaddress
+
+

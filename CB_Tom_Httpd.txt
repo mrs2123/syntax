@@ -1,0 +1,12 @@
+yum package 'Application' do
+  package_name ['http','tomcat']
+  action :install
+end
+
+service "httpd" do
+  action :start
+end
+
+service "tomcat" do
+   action :start
+end

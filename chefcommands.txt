@@ -1,0 +1,18 @@
+. { iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -project chefdk -channel stable -version 0.19.6
+command in powershell to download chefdk.
+
+Before your profile will be run, you must also execute: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine -Force
+
+knife client show chefdem007-validator
+command that is used check connection between work station and chef server
+
+knife bootstrap 192.168.155.128 -x root -P karthik --node-name redhat-node
+command to bootstrap
+
+
+
+chef gem install knife-ec2
+command to install Ec2 to make botstrap beyween ec2 and workstation
+
+knife bootstrap ec2-54-186-76-49.us-west-2.compute.amazonaws.com --ssh-user ec2-user --sudo --identity-file C:\.chef\cloud.pem --verbose
+  

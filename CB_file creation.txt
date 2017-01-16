@@ -1,0 +1,6 @@
+file '/home/srini1/srini.txt' do
+  content 'This is text that i am storing in the above folder'
+  mode     '0755'
+  owner    'srini'
+  group     'srini'
+end

@@ -1,0 +1,21 @@
+bash 'enable port 8080' do
+user 'root'
+cws '/tmp'
+code <<-EOH
+
+firewall-cmd --zone=public --add-port =8080/tcp --permanent
+whoami
+date
+
+EOH
+
+not_if "firewall-cmd --zone=public --list-port = 8080/tcp --permanent
+
+end
+
+
+
+
+not_if--->if true then wont execute command, if false then only execute
+
+only_if--->if fasle then 

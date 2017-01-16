@@ -1,0 +1,54 @@
+************Remote chef_apply**********
+
+knife ssh "node_name" -x root -P passwd "chef-client" --attribute ipaddress
+
+******creating a user in cookbook********
+
+user 'tony' do
+   comment 'random user'
+   Uid '1234'
+   group 'users'
+   home '/home/tony'
+   shell 'bin/bash'
+   password '1239'
+end
+
+group 'srini' do
+   gid      '9999'
+   members  'srini'
+   action   :create
+
+******creating a file in a particular user *******
+
+file '/app/sample.txt' do
+  content 'This is a sample'
+  mode '0755'
+  owner 'srini'
+  group  'srini'
+end
+
+
+
+**********Version storage in metadat*********
+to keep cookbook version 
+1. change version in metadata.rb 
+2.change description too
+
+***********to reload the atributes in node to keep attributes of a node updated********
+ohai 'reload' do
+   action :reload
+end
+
+*******USER_creation********
+
+file '/home/srini1/srini.txt' do
+  content 'This is text that i am storing in the above folder'
+  mode     '0755'
+  owner    'srini'
+  group     'srini'
+end
+
+******Installing_tomcat************
+
+
+

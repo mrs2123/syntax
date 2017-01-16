@@ -1,0 +1,10 @@
+define in cookbook:
+
+cookbook_file '/usr/share/tomcat/webapps/sample.war' do
+source 'sample.war'
+owner 'root'
+group 'root'
+mode    '0755'
+action  :create
+
+end

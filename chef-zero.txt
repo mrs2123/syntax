@@ -1,0 +1,11 @@
+chef-zero
+
+1.create a folder in /root/chef-zero
+2.copy cookbook into chef-zero
+3.create a client.rb file
+4.In client.rb  
+cookbook_path "/root/chef-zero/cookbooks"
+local_mode 'true'
+log_level :info
+
+5.to run chef-client -z -c/root/chef-zero/client.rb -r recipe[cookbookname]

@@ -1,0 +1,19 @@
+Commands
+
+to add runlist:
+knife node run_list add node_name 'cookbookname' 
+
+to check runlist of a specific node:
+knife node show srini-node
+
+to check node list:
+knife node list
+
+Remote command:
+knife ssh -x srini -P passwd -a 10.0.0.0 -z
+
+
+No validation.pem:
+
+1. cd /etc
+2.chmod -R 777 etc
