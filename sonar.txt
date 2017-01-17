@@ -1,0 +1,50 @@
+1.sonarqube
+2.sonar-runner/scnner
+
+a.extract files first
+b.mv sonarqube-5.2 /opt/
+c.unzip sonar runner
+d.mv sonar-runner-2.4 /opt/
+e.set environment varaibles- 
+vi /etc/profile--global config
+
+
+export SONARQUBE_HOME=/opt/sonarqube-5.2
+export PATH=${PATH}:${SONARQUBE_HOME}/bin
+
+export SONAR_RUNNER_HOME=/opt/sonar-runner-2.4
+export PATH=${PATH}:${SONAR_RUNNER_HOME}/bin
+
+f. check whether it got set or not by
+echo $SONARQUBE_HOME
+result:/opt/sonarqube-5.2
+
+echo $SONAR_RUNNER_HOME
+result: /opt/sonar-runner-2.4
+
+g. go to database
+   mysql
+show databases
+A.creating mysql sonar databases:
+
+CREATE DATABASE sonar CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE USER 'sonar' IDENTIFIED BY 'sonar';
+GRANT ALL ON sonar.* TO 'sonar'@'%' IDENTIFIED BY 'sonar';
+GRANT ALL ON sonar.* TO 'sonar'@'%'localhost' IDENTIFIED BY 'sonar';
+FLUSH PRIVILEGES;
+
+h. vi /opt/sonarqube-5.2/conf/sonar.properties
+  in this uncommment sonar.jdbc.username=sonar
+                     sonar.jdbc.password=sonar
+
+i. uncomment database type and change local host thing in that line
+
+j. vi/opt/sonar-runner/conf/sonar-runner.properties
+uncomment server host
+uncomment mysql database and configure host name
+
+k.cd /opt/sonarqube-5.2/bin
+
+L../sonar.sh start    
+
+

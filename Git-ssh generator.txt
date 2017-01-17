@@ -1,0 +1,4 @@
+1.Generate a ssh-keygen using ssh-keygen -t rsa -C "emailid"
+2.it will prompt location where to save public key and private key
+3. save those files and copy all the public key and paste it in the ssh and gpg keys
+4.save the file
